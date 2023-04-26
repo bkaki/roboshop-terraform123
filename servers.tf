@@ -66,7 +66,7 @@ resource "aws_instance" "shipping" {
   instance_type = "t3.micro"
 
   tags = {
-    Name = "fshipping"
+    Name = "shipping"
   }
 }
 
