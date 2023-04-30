@@ -15,24 +15,24 @@ data "aws_security_group" "allow-all" {
 
 
 variable "instance_type" {
-  value = "var.instance_type"
-
-
-  variable "components" {
-    default = [ "frontend", "mongodb", "catalogue" ]
-  }
-
-
-resource "aws_instance" "instance" {
-  count         = length(var.components)
-  ami           = data.aws_ami.centos.image_id
-  instance_type = var.instance_type
- vpc_security_group_ids = [ data.aws_security_group.allow-all.id]
-
-  tags = {
-    Name = var.components[count.index]
-  }
+  value = "t3.small"
 }
+
+variable "components" {
+  default = [ "frontend" , "mongodb", "catalogue"]
+}
+
+ resource "aws_instance" "instance" {
+   count                  = length(var.components)
+   ami                    = data.aws_ami.centos.image_id
+   instance_type          = var.instance_type
+   vpc_security_group_ids = [data.aws_security_group.allow-all.id]
+
+   tags = {
+     Name = var.components[count.index]
+   }
+ }
+
 
 #resource "aws_route53_record" "frontend" {
 #  zone_id = "Z043469221HSK6L1Q1E1V"
