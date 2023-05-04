@@ -1,46 +1,28 @@
-data "aws_ami" "centos" {
-  owners           = ["973714476881"]
-  most_recent      = true
-  name_regex       = "Centos-8-DevOps-Practice"
-}
-
-output "ami" {
-  value = data.aws_ami.centos.image_id
-
-}
-
-data "aws_security_group" "allow-all" {
-  name = "allow-all"
-}
 
 
-variable "instance_type" {
-  default = "t3.small"
-}
-
-variable "components" {
-  default = [ "frontend" , "mongodb", "catalogue"]
-}
 
  resource "aws_instance" "instance" {
-   count                  = length(var.components)
+   for_each               = var.components
    ami                    = data.aws_ami.centos.image_id
-   instance_type          = var.instance_type
+   instance_type          = each.value["instance_type"]
    vpc_security_group_ids = [data.aws_security_group.allow-all.id]
 
    tags = {
-     Name = var.components[count.index]
+     Name = each.value["name"]
    }
  }
 
 
-#resource "aws_route53_record" "frontend" {
-#  zone_id = "Z043469221HSK6L1Q1E1V"
-#  name    = "frontend-dev.bhaskar77.online"
-#  type    = "A"
-#  ttl     = 30
-#  records = [aws_instance.frontend.private_ip]
-#}
+resource "aws_route53_record" "frontend" {
+  for_each = var.components
+zone_id = "Z043469221HSK6L1Q1E1V"
+ name    = "${each.value["name"]}-dev.bhaskar77.online"
+ type    = "A"
+ ttl     = 30
+ records = [aws_instance.instance[each.value["name"]].private_ip]
+
+
+}
 #
 #output "frontend" {
 #  value = aws_instance.frontend.public_ip
