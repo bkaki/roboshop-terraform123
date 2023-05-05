@@ -25,7 +25,7 @@ for_each = var.components
       "rm -rf roboshopshell",
       "https://github.com/bkaki/roboshop-shell.git",
       "cd roboshop-shell",
-      "sudo bash ${each.value["name"]}.sh"
+      "sudo bash ${each.value["name"]}.sh ${lookup(each.value, "password", "Null")}"
     ]
   }
 }
