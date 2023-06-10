@@ -13,6 +13,13 @@ resource "aws_instance" "frontend" {
   }
 }
 
+resource "aws_route53_record" "frontend" {
+  zone_id = aws_route53_zone.primary.zone_id
+  name    = "www.example.com"
+  type    = "A"
+  ttl     = 30
+  records = [aws_eip.lb.public_ip]
+}
 resource "aws_instance" "catalogue" {
   ami           = data.aws_ami.centos.image_id
   instance_type = "t3.micro"
