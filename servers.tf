@@ -4,12 +4,12 @@ data "aws_ami" "centos" {
   name_regex   = "Centos-8-DevOps-Practice"
 }
 
-variable "instance_type" {
-  default = "t3.small"
-}
-
 data "aws_security_group" "allow-all" {
   default = "allow-all"
+}
+
+variable "instance_type" {
+  default = "t3.small"
 }
 
 resource "aws_instance" "frontend" {
