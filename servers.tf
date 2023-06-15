@@ -13,57 +13,57 @@ variable "components" {
       name = "frontend"
       instance_type = "t3.small"
     }
- default  = {
-   frontend = {
+  default  = {
+    catalogue = {
      name = "catalogue"
      instance_type = "t3.micro"
   }
 
   default  = {
-    frontend = {
+    mongodb = {
       name = "mongodb"
       instance_type = "t3.small"
     }
   default  = {
-    frontend = {
+    user = {
       name = "user"
       instance_type = "t3.micro"
     }
     default  = {
-      frontend = {
+      redis = {
         name = "redis"
         instance_type = "t3.small"
     }
 
     default  = {
-      frontend = {
+      cart = {
         name = "cart"
         instance_type = "t3.micro"
     }
     default  = {
-      frontend = {
+      mysql = {
         name = "mysql"
         instance_type = "t3.small"
     }
       default  = {
-       frontend = {
+        shipping = {
            name = "shipping"
            instance_type = "t3.medium"
    }
     default  = {
-      frontend = {
+      rabbitmq = {
        name = "rabbitmq"
        instance_type = "t3.small"
    }
       default  = {
-         frontend = {
+        payment = {
             name = "payment"
             instance_type = "t3.small"
    }
   }
  }
 
-  resource "aws_instance" "instance" {
+resource "aws_instance" "instance" {
   for_each = var.components
   ami           = data.aws_ami.centos.image_id
   instance_type = each.value["instance_type"]
