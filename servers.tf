@@ -9,54 +9,54 @@ data "aws_security_group" "allow-all" {
 }
 variable "components" {
   default  = {
-    frontend ={
+    frontend = {
       name = "frontend"
       instance_type = "t3.small"
     }
  default  = {
-   frontend ={
+   frontend = {
      name = "catalogue"
      instance_type = "t3.micro"
   }
 
   default  = {
-    frontend ={
+    frontend = {
       name = "mongodb"
       instance_type = "t3.small"
     }
   default  = {
-    frontend ={
+    frontend = {
       name = "user"
       instance_type = "t3.micro"
     }
     default  = {
-      frontend ={
+      frontend = {
         name = "redis"
         instance_type = "t3.small"
     }
 
     default  = {
-      frontend ={
+      frontend = {
         name = "cart"
         instance_type = "t3.micro"
     }
     default  = {
-      frontend ={
+      frontend = {
         name = "mysql"
         instance_type = "t3.small"
     }
       default  = {
-       frontend ={
+       frontend = {
            name = "shipping"
            instance_type = "t3.medium"
    }
     default  = {
-      frontend ={
+      frontend = {
        name = "rabbitmq"
        instance_type = "t3.small"
    }
       default  = {
-         frontend ={
+         frontend = {
             name = "payment"
             instance_type = "t3.small"
    }
