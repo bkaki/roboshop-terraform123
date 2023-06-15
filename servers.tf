@@ -63,13 +63,14 @@ variable "components" {
   }
 }
 
-##resource "aws_route53_record" "frontend" {
-#  zone_id = "Z01900082F7LR70JYHJFY"
-#  name    = "frontend-dev.bhaskar77.online"
-#  type    = "A"
-#  ttl     = 30
-#  records = [aws_instance.frontend.private_ip]
-#}
+ resource "aws_route53_record" "records" {
+ for_each = var.components
+ zone_id  = "Z01900082F7LR70JYHJFY"
+ name   = "${each.value["name"]}.bhaskar77.online"
+ type    = "A"
+   ttl     = 30
+  records = [aws_instance.instance[each.value["name"]].private_ip]
+}
 #
 #resource "aws_instance" "catalogue" {
 #  ami           = data.aws_ami.centos.image_id
