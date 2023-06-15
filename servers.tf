@@ -13,49 +13,38 @@ variable "components" {
       name = "frontend"
       instance_type = "t3.small"
     }
-  default  = {
     catalogue = {
      name = "catalogue"
      instance_type = "t3.micro"
   }
-
-  default  = {
     mongodb = {
       name = "mongodb"
       instance_type = "t3.small"
     }
-  default  = {
     user = {
       name = "user"
       instance_type = "t3.micro"
     }
-    default  = {
       redis = {
         name = "redis"
         instance_type = "t3.small"
     }
-
-    default  = {
       cart = {
         name = "cart"
         instance_type = "t3.micro"
     }
-    default  = {
       mysql = {
         name = "mysql"
         instance_type = "t3.small"
     }
-      default  = {
         shipping = {
            name = "shipping"
            instance_type = "t3.medium"
    }
-    default  = {
       rabbitmq = {
        name = "rabbitmq"
        instance_type = "t3.small"
    }
-      default  = {
         payment = {
             name = "payment"
             instance_type = "t3.small"
