@@ -1,57 +1,3 @@
-data "aws_ami" "centos" {
-  most_recent = true
-  owners = ["973714476881"]
-  name_regex   = "Centos-8-DevOps-Practice"
-}
-
-data "aws_security_group" "allow-all" {
-  name = "allow-all"
-}
-variable "components" {
-  default  = {
-    frontend = {
-      name = "frontend"
-      instance_type = "t3.small"
-    }
-    catalogue = {
-     name = "catalogue"
-     instance_type = "t3.micro"
-  }
-    mongodb = {
-      name = "mongodb"
-      instance_type = "t3.small"
-    }
-    user = {
-      name = "user"
-      instance_type = "t3.micro"
-    }
-      redis = {
-        name = "redis"
-        instance_type = "t3.small"
-    }
-      cart = {
-        name = "cart"
-        instance_type = "t3.micro"
-    }
-      mysql = {
-        name = "mysql"
-        instance_type = "t3.small"
-    }
-        shipping = {
-           name = "shipping"
-           instance_type = "t3.medium"
-   }
-      rabbitmq = {
-       name = "rabbitmq"
-       instance_type = "t3.small"
-   }
-        payment = {
-            name = "payment"
-            instance_type = "t3.small"
-   }
-  }
- }
-
   resource "aws_instance" "instance" {
   for_each = var.components
   ami           = data.aws_ami.centos.image_id
@@ -71,6 +17,8 @@ variable "components" {
    ttl     = 30
   records = [aws_instance.instance[each.value["name"]].private_ip]
 }
+
+
 #
 #resource "aws_instance" "catalogue" {
 #  ami           = data.aws_ami.centos.image_id
