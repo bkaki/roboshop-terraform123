@@ -1,2 +1,2 @@
-varianle "env" {}
+variable "env" {}
 variable "components" {}
