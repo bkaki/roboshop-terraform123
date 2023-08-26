@@ -15,9 +15,11 @@ output "aws_instance" {
     most_recent = true
     name_regex  = "Centos-8-DevOps-Practice"
  }
-   output "ami" {
-    value = data.aws_ami.centos.image_id
-   }
+
+
+output "ami" {
+value = data.aws_ami.centos.image_id
+ }
 
 
 
