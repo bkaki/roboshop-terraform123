@@ -19,3 +19,4 @@ data "aws_ami" "centos" {
 
 }
 
+
