@@ -5,46 +5,52 @@
     name_regex  = "Centos-8-DevOps-Practice"
  }
 
-resource "aws_instance" "frontend" {
-  ami           = data.aws_ami.centos.image_id
-  instance_type = "t3.micro"
-
-  tags = {
-    Name = "frontend"
-  }
-}
-
- resource "aws_route53_record" "frontend" {
-   zone_id = "Z01900082F7LR70JYHJFY"
-   name    = "frontend-dev.bhaskar77.online"
-   type    = "A"
-   ttl     = 30
-   records = [aws_instance.frontend.private_ip]
+ variable "components" {
+   default = [ "frontend", "catalogue", "cart" ]
  }
- resource "aws_instance" "catalogue" {
+
+resource "aws_instance" "instance" {
+  count= length(var.components)
   ami           = data.aws_ami.centos.image_id
   instance_type = "t3.micro"
 
   tags = {
-    Name = "catalogue"
+    Name = var.components[count.index]
   }
 }
 
- resource "aws_route53_record" "catalogue" {
-   zone_id = "Z01900082F7LR70JYHJFY"
-   name    = "catalogue-dev.bhaskar77.online"
-   type    = "A"
-   ttl     = 30
-   records = [aws_instance.catalogue.private_ip]
- }
- resource "aws_instance" "mongodb" {
-  ami           = data.aws_ami.centos.image_id
-  instance_type = "t3.micro"
 
-  tags = {
-    Name = "mongodb"
-  }
-}
+# resource "aws_route53_record" "frontend" {
+#   zone_id = "Z01900082F7LR70JYHJFY"
+#   name    = "frontend-dev.bhaskar77.online"
+#   type    = "A"
+#   ttl     = 30
+#   records = [aws_instance.frontend.private_ip]
+# }
+# resource "aws_instance" "catalogue" {
+#  ami           = data.aws_ami.centos.image_id
+#  instance_type = "t3.micro"
+#
+#  tags = {
+#    Name = "catalogue"
+#  }
+#}
+#
+# resource "aws_route53_record" "catalogue" {
+#   zone_id = "Z01900082F7LR70JYHJFY"
+#   name    = "catalogue-dev.bhaskar77.online"
+#   type    = "A"
+#   ttl     = 30
+#   records = [aws_instance.catalogue.private_ip]
+# }
+# resource "aws_instance" "mongodb" {
+#  ami           = data.aws_ami.centos.image_id
+#  instance_type = "t3.micro"
+#
+#  tags = {
+#    Name = "mongodb"
+#  }
+#}
 
  resource "aws_route53_record" "mongodb" {
    zone_id = "Z01900082F7LR70JYHJFY"
