@@ -5,11 +5,6 @@
     name_regex  = "Centos-8-DevOps-Practice"
  }
 
-output "ami" {
-value = data.aws_ami.centos.image_id
- }
-
-
 
 resource "aws_instance" "frontend" {
   ami           = data.aws_ami.centos.image_id
