@@ -5,17 +5,23 @@
     name_regex  = "Centos-8-DevOps-Practice"
  }
 
- variable "components" {
-   default = [ "frontend", "catalogue", "cart" ]
+ data "aws_security_group" "allow-all" {
+   name = "allow-all"
  }
 
-resource "aws_instance" "instance" {
-  count= length(var.components)
+ output "aws_security_id" {
+   value = data.aws_security_group.allow-all.id
+ }
+ variable "instance_type" {
+   default = "t3.micro"
+ }
+
+resource "aws_instance" "frontend" {
   ami           = data.aws_ami.centos.image_id
-  instance_type = "t3.micro"
+  instance_type = var.instance_type
 
   tags = {
-    Name = var.components[count.index]
+    Name = "frontend"
   }
 }
 
