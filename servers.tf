@@ -5,7 +5,7 @@ resource "aws_instance" "frontend" {
   tags = {
     Name = "frontend"
   }
-
+}
 output "aws_instance" {
     value = aws_instance.frontend.public_ip
   }
