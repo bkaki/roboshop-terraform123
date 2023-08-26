@@ -1,14 +1,3 @@
-resource "aws_instance" "frontend" {
-  ami           = "ami-03265a0778a880afb"
-  instance_type = "t3.micro"
-
-  tags = {
-    Name = "frontend"
-  }
-}
-output "aws_instance" {
-    value = aws_instance.frontend.public_ip
-  }
 
  data "aws_ami" "centos" {
     owners      = ["973714476881"]
@@ -16,76 +5,121 @@ output "aws_instance" {
     name_regex  = "Centos-8-DevOps-Practice"
  }
 
-
 output "ami" {
 value = data.aws_ami.centos.image_id
  }
 
 
 
+resource "aws_instance" "frontend" {
+  ami           = data.aws_ami.centos.image_id
+  instance_type = "t3.micro"
+
+  tags = {
+    Name = "frontend"
+  }
+}
+
+ resource "aws_route53_record" "frontend" {
+   zone_id = "Z01900082F7LR70JYHJFY"
+   name    = "frontend-dev.bhaskar77.online"
+   type    = "A"
+   ttl     = 30
+   records = [aws_instance.frontend.private_ip]
+ }
+
+
 #resource "aws_instance" "frontend" {
-#  ami           = "ami-03265a0778a880afb"
+#  ami           = data.aws_ami.centos.image_id
 #  instance_type = "t3.micro"
 #
 #  tags = {
 #    Name = "frontend"
 #  }
+#}
+#
 #resource "aws_instance" "frontend" {
-#  ami           = "ami-03265a0778a880afb"
+#  ami           = data.aws_ami.centos.image_id
 #  instance_type = "t3.micro"
 #
 #  tags = {
 #    Name = "frontend"
 #  }
+#}
 #resource "aws_instance" "frontend" {
-#  ami           = "ami-03265a0778a880afb"
+#  ami           = data.aws_ami.centos.image_id
 #  instance_type = "t3.micro"
 #
 #  tags = {
 #    Name = "frontend"
 #  }
+#}
 #resource "aws_instance" "frontend" {
-#  ami           = "ami-03265a0778a880afb"
+#  ami           = data.aws_ami.centos.image_id
 #  instance_type = "t3.micro"
 #
 #  tags = {
 #    Name = "frontend"
 #  }
+#}
 #resource "aws_instance" "frontend" {
-#  ami           = "ami-03265a0778a880afb"
+#  ami           = data.aws_ami.centos.image_id
 #  instance_type = "t3.micro"
 #
 #  tags = {
 #    Name = "frontend"
 #  }
+#}
 #resource "aws_instance" "frontend" {
-#  ami           = "ami-03265a0778a880afb"
+#  ami           = data.aws_ami.centos.image_id
 #  instance_type = "t3.micro"
 #
 #  tags = {
 #    Name = "frontend"
 #  }
+#}
 #resource "aws_instance" "frontend" {
-#  ami           = "ami-03265a0778a880afb"
+#  ami           = data.aws_ami.centos.image_id
 #  instance_type = "t3.micro"
 #
 #  tags = {
 #    Name = "frontend"
 #  }
+#}
 #resource "aws_instance" "frontend" {
-#  ami           = "ami-03265a0778a880afb"
+#  ami           = data.aws_ami.centos.image_id
 #  instance_type = "t3.micro"
 #
 #  tags = {
 #    Name = "frontend"
 #  }
+#}
 #resource "aws_instance" "frontend" {
-#  ami           = "ami-03265a0778a880afb"
+#  ami           = data.aws_ami.centos.image_id
 #  instance_type = "t3.micro"
 #
 #  tags = {
 #    Name = "frontend"
 #  }
+#}
+#resource "aws_instance" "frontend" {
+#  ami           = data.aws_ami.centos.image_id
+#  instance_type = "t3.micro"
+#
+#  tags = {
+#    Name = "frontend"
+#  }
+#}
+#resource "aws_instance" "frontend" {
+#  ami           = data.aws_ami.centos.image_id
+#  instance_type = "t3.micro"
+#
+#  tags = {
+#    Name = "frontend"
+#  }
+#}
+
+
 
 
 
