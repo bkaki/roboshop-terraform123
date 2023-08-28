@@ -51,30 +51,30 @@ resource "aws_instance" "instance" {
      }
      rabbitmq = {
        name          = "rabbitmq"
-       instance_type = "t3.micro"
+       instance_type = "t3.small"
      }
      mysql = {
        name          = "mysql"
-       instance_type = "t3.micro"
+       instance_type = "t3.small"
      }
      shipping = {
        name          = "shipping"
-       instance_type = "t3.micro"
+       instance_type = "t3.medium"
      }
      payment = {
-       name          = "payent"
-       instance_type = "t3.micro"
+       name          = "payment"
+       instance_type = "t3.small"
      }
    }
  }
 
-# resource "aws_route53_record" "records" {
-#   zone_id = "Z01900082F7LR70JYHJFY"
-#   name    = "frontend-dev.bhaskar77.online"
-#   type    = "A"
-#   ttl     = 30
-#   records = [aws_instance.frontend.private_ip]
-# }
+ resource "aws_route53_record" "records" {
+   zone_id = "Z01900082F7LR70JYHJFY"
+   name    = "frontend-dev.bhaskar77.online"
+   type    = "A"
+   ttl     = 30
+   records = [aws_instance.frontend.private_ip]
+ }
 
 
 # resource "aws_instance" "catalogue" {
