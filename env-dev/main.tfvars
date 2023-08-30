@@ -1,4 +1,4 @@
-components= {
+components = {
   frontend = {
     name          = "frontend"
     instance_type = "t3.micro"
@@ -38,13 +38,6 @@ components= {
   payment = {
     name          = "payment"
     instance_type = "t3.small"
+
   }
 }
-
-
-env = "dev"
-
-
-
-
-
