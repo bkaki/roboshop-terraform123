@@ -22,7 +22,6 @@ resource "aws_instance" "instance" {
      "git clone https://github.com/bkaki/roboshop-shell.git",
       "cd roboshop-shell",
       "sudo bash ${each.value["name"]}.sh"
-
     ]
   }
 }
