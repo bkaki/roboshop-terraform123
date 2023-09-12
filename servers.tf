@@ -9,6 +9,24 @@ resource "aws_instance" "instance" {
 }
 
 
+  provisioner "remote-exec" {
+  connection {
+    type     = "ssh"
+    user     = "centos"
+    password = "DevOps321"
+    host     = self.private_ip
+  }
+
+
+    inline = [
+      "rm-rf roboshop-shell",
+     "git clone https://github.com/bkaki/roboshop-shell.git",
+      "cd roboshop-shell",
+      "sudo bash ${each.value["name"]}.sh"
+
+    ]
+  }
+}
  resource "aws_route53_record" "records" {
    for_each = var.components
    zone_id = "Z01900082F7LR70JYHJFY"
