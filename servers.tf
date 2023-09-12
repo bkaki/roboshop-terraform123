@@ -17,7 +17,6 @@ resource "aws_instance" "instance" {
     host     = self.private_ip
   }
 
-
     inline = [
       "rm-rf roboshop-shell",
      "git clone https://github.com/bkaki/roboshop-shell.git",
