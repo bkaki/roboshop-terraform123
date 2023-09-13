@@ -37,6 +37,7 @@ components = {
   shipping = {
     name          = "shipping"
     instance_type = "t3.medium"
+    password = "RoboShop@1"
   }
 
   payment = {
