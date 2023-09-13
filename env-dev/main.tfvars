@@ -37,6 +37,7 @@ components = {
     name          = "shipping"
     instance_type = "t3.medium"
   }
+
   payment = {
     name          = "payment"
     instance_type = "t3.small"
