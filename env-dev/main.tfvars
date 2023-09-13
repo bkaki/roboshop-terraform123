@@ -34,17 +34,16 @@ components = {
     password = "RoboShop@1"
 
   }
-  shipping = {
-    name          = "shipping"
-    instance_type = "t3.medium"
-    password = "RoboShop@1"
-  }
-
   payment = {
     name          = "payment"
     instance_type = "t3.small"
     password = "roboshop123"
 
+  }
+  shipping = {
+    name          = "shipping"
+    instance_type = "t3.medium"
+    password = "RoboShop@1"
   }
 }
 
