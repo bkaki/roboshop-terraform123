@@ -10,7 +10,7 @@ resource "aws_instance" "instance" {
 
  resource "null-resource" "provisioner" {
    depends_on = [aws_instance.instance, aws_route53_record.records]
-   for_each = var.components
+   for_each   = var.components
    provisioner "remote-exec" {
 
      connection {
@@ -26,7 +26,6 @@ resource "aws_instance" "instance" {
        "cd roboshop-shell",
        "sudo bash ${each.value["name"]}.sh"
      ]
-
    }
  }
  resource "aws_route53_record" "records" {
